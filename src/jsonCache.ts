@@ -4,7 +4,7 @@ interface CacheItem<V> {
   [key: string]: V
 }
 
-export default class JSONCache<V, R> {
+export default class JSONCache<V> {
   protected cache: CacheItem<V>
 
   constructor(private getLive?: (k: string) => Promise<V>) {
@@ -36,16 +36,16 @@ export default class JSONCache<V, R> {
   }
 
   // Operations
-  public get(key: string): V | R | undefined {
+  public get(key: string): V | undefined {
     return this.cache[key]
   }
 
-  public async getOrUpdate(key: string): Promise<V | R> {
+  public async getOrUpdate(key: string): Promise<V> {
     const value = this.get(key)
     if (value) return value
     else await this.update(key)
     // If update operation worked, will not be undefined.
-    return this.get(key) as V | R
+    return this.get(key) as V
   }
 
   public set(key: string, value: V): V {

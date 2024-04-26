@@ -1,14 +1,14 @@
 import JSONCache from "./jsonCache"
 
 test("gets and sets", () => {
-  const cache = new JSONCache<number, number>()
+  const cache = new JSONCache<number>()
   expect(cache.get("1")).toBeUndefined()
   cache.set("1", 123)
   expect(cache.get("1")).toBe(123)
 })
 
 test("deletes", () => {
-  const cache = new JSONCache<number, number>()
+  const cache = new JSONCache<number>()
   expect(cache.delete("1")).toBeFalsy()
   cache.set("1", 123)
   expect(cache.get("1")).toBe(123)
@@ -17,14 +17,14 @@ test("deletes", () => {
 })
 
 test("loads json strings", () => {
-  const cache = new JSONCache<number, number>()
+  const cache = new JSONCache<number>()
   cache.loadFromString('{"1": 123}')
   expect(cache.get("1")).toBe(123)
   expect(cache.get("2")).toBeUndefined()
 })
 
 test("keys and values", () => {
-  const cache = new JSONCache<number, number>()
+  const cache = new JSONCache<number>()
   cache.set("1", 123)
   expect(cache.keys()).toEqual(["1"])
   expect(cache.values()).toEqual([123])
@@ -34,14 +34,14 @@ test("keys and values", () => {
 })
 
 test("throws when loading", () => {
-  const cache = new JSONCache<number, number>()
+  const cache = new JSONCache<number>()
   expect(() => cache.loadFromString("\\")).toThrow(SyntaxError)
   expect(() => cache.loadFromString("")).toThrow(SyntaxError)
   expect(() => cache.loadFromFile("iDontExist.json")).toThrow()
 })
 
 test("throws when updating with no updater", () => {
-  const cache = new JSONCache<number, number>()
+  const cache = new JSONCache<number>()
   expect(async () => await cache.update("1")).rejects.toThrow()
 })
 
@@ -56,7 +56,7 @@ test("async updates", async () => {
     return Promise.resolve(count)
   }
 
-  const cache = new JSONCache<number, number>(updater)
+  const cache = new JSONCache<number>(updater)
   expect(cache.get("1")).toBeUndefined()
   expect(await cache.update("1")).toBe(1)
   expect(cache.get("1")).toBe(1)

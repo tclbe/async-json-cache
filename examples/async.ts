@@ -15,7 +15,7 @@ async function updater(key: string) {
   return Promise.resolve(count)
 }
 
-const cache = new JSONCache<number, number>(updater)
+const cache = new JSONCache<number>(updater)
 console.log(cache.get("1")) // undefined
 console.log(cache.set("1", 1000)) // 1000
 console.log(await cache.update("1")) // 1, after a delay of 1 second.

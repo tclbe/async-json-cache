@@ -3,14 +3,14 @@
   "version": "1.0.0",
   "description": "File-based cached for JSON objects, with user-defined asynchronous update functionality.",
   "type": "module",
-  "main": "index.js",
+  "main": "src/jsonCache.js",
   "files": [
     "dist",
     "LICENSE",
     "README.md",
     "package.json"
   ],
-  "types": "dist/index.d.ts",
+  "types": "dist/jsonCache.d.ts",
   "scripts": {
     "test": "jest",
     "build": "tsc"
