@@ -1,14 +1,11 @@
 {
   "name": "async-json-cache",
-  "version": "1.0.0",
+  "version": "1.0.3",
   "description": "File-based cached for JSON objects, with user-defined asynchronous update functionality.",
   "type": "module",
-  "main": "src/jsonCache.js",
+  "main": "dist/jsonCache.js",
   "files": [
-    "dist",
-    "LICENSE",
-    "README.md",
-    "package.json"
+    "dist"
   ],
   "types": "dist/jsonCache.d.ts",
   "scripts": {
